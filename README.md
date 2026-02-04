@@ -1,59 +1,57 @@
-# TaskFlow
+# 🚀 TaskFlow - Modern Angular Kanban Board
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 21.0.3.
+![Angular](https://img.shields.io/badge/Angular-18+-DD0031?style=for-the-badge&logo=angular&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)
+![SASS](https://img.shields.io/badge/SCSS-CC6699?style=for-the-badge&logo=sass&logoColor=white)
+![Vercel](https://img.shields.io/badge/Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
-## Development server
+A reactive, responsive, and fully functional Kanban Task Manager built with the latest features of **Angular 18+**. The application focuses on modern state management using **Signals** and efficient DOM updates with the new **Control Flow** syntax.
 
-To start a local development server, run:
+👉 **[Live Demo Available Here]()**
 
-```bash
-ng serve
-```
+![App Screenshot](./public/assets/screenshot.png)
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+## ✨ Key Features
 
-## Code scaffolding
+* **Drag & Drop Interface:** Smooth task management across columns using **Angular CDK**.
+* **Reactive State Management:** Powered entirely by **Angular Signals**.
+* **Data Persistence:** Tasks are saved to `localStorage` (with SSR-safe implementation).
+* **CRUD Operations:** Create, Read, Update, and Delete tasks with validation.
+* **Modern UI/UX:**
+    * Responsive Dark Mode design.
+    * Custom Modals for confirmations and editing.
+    * Keyboard accessibility (Enter to add tasks).
+* **Optimized Performance:** Uses Angular's new `@for` and `@if` control flow syntax.
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+## 🛠️ Technical Stack & Concepts
 
-```bash
-ng generate component component-name
-```
+This project was built to demonstrate proficiency in modern Angular development practices:
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
+* **Framework:** Angular 18+ (Standalone Components API).
+* **State Management:** Signals (`signal`, `computed`, `update`).
+* **Drag & Drop:** `@angular/cdk/drag-drop`.
+* **Forms:** Reactive Forms with typed controls.
+* **Styling:** SCSS with BEM-like naming and CSS variables.
+* **Architecture:**
+    * **Smart Component:** `AppComponent` handles logic and state.
+    * **Dumb Component:** `TaskCardComponent` handles presentation and emits events (`output()`, `input()`).
 
-```bash
-ng generate --help
-```
+## ⚙️ Installation & Running
 
-## Building
+1.  **Clone the repository:**
+    ```bash
+    git clone
+    ```
 
-To build the project run:
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-```bash
-ng build
-```
+3.  **Start the development server:**
+    ```bash
+    npm start
+    ```
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
-
-## Running unit tests
-
-To execute unit tests with the [Vitest](https://vitest.dev/) test runner, use the following command:
-
-```bash
-ng test
-```
-
-## Running end-to-end tests
-
-For end-to-end (e2e) testing, run:
-
-```bash
-ng e2e
-```
-
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
-
-## Additional Resources
-
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+4.  **Open in browser:**
+    Navigate to `http://localhost:4200/`.

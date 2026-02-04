@@ -1,0 +1,261 @@
+$card-bg: #334155;
+$card-hover: #475569;
+$text-light: #f8fafc;
+$text-dim: #cbd5e1;
+$primary-color: #818cf8;
+$danger-bg: #450a0a;
+$danger-text: #fca5a5;
+
+.task-card {
+  background: $card-bg;
+  padding: 0;
+  margin-bottom: 12px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  transition: all 0.2s ease;
+  color: $text-light;
+
+  &:hover {
+    background: $card-hover;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 15px rgba(0, 0, 0, 0.4);
+    border-color: rgba(255, 255, 255, 0.1);
+  }
+
+  .card-header {
+    padding: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: grab;
+
+    &:active {
+      cursor: grabbing;
+    }
+
+    .title-section {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+      cursor: pointer;
+
+      h3 {
+        margin: 0;
+        font-size: 1rem;
+        font-weight: 600;
+        color: $text-light;
+        line-height: 1.4;
+      }
+
+      .arrow-icon {
+        color: #94a3b8;
+        min-width: 20px;
+        transition:
+          transform 0.3s ease,
+          color 0.3s ease;
+      }
+
+      &:hover .arrow-icon {
+        color: $primary-color;
+      }
+    }
+
+    .actions {
+      display: flex;
+      gap: 8px;
+      margin-left: 12px;
+
+      button {
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        width: 28px;
+        height: 28px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: background-color 0.2s;
+      }
+
+      .btn-edit {
+        background: #1e293b;
+        color: $text-dim;
+        &:hover {
+          background: #0f172a;
+          color: white;
+        }
+      }
+
+      .btn-delete {
+        background: $danger-bg;
+        color: $danger-text;
+        &:hover {
+          background: #7f1d1d;
+          color: white;
+        }
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    .actions {
+      opacity: 1 !important;
+    }
+  }
+
+  .card-body {
+    padding: 0 16px 16px 16px;
+    background-color: rgba(0, 0, 0, 0.1);
+    border-top: 1px solid rgba(255, 255, 255, 0.05);
+    animation: fadeIn 0.3s ease-out;
+
+    p {
+      margin: 8px 0 0 0;
+      font-size: 0.9rem;
+      color: $text-dim;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .created-at {
+      display: block;
+      margin-top: 16px;
+      padding-top: 12px;
+      border-top: 1px dashed rgba(255, 255, 255, 0.1);
+      font-size: 0.75rem;
+      color: #64748b;
+      text-align: right;
+    }
+  }
+
+  &.expanded {
+    .arrow-icon {
+      transform: rotate(180deg);
+      color: $primary-color;
+    }
+    background: #475569;
+  }
+
+  &.heading-only {
+    padding: 0;
+    opacity: 0.3;
+    pointer-events: none;
+  }
+}
+
+.modal-backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+
+  .edit-box {
+    background: #1e293b;
+    padding: 32px;
+    border-radius: 16px;
+    width: 90%;
+    max-width: 480px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+    border: 1px solid #334155;
+
+    h3 {
+      text-align: center;
+      margin: 0;
+      font-size: 1.5rem;
+      color: $text-light;
+      font-weight: 700;
+    }
+
+    input,
+    textarea {
+      padding: 14px;
+      border: 1px solid #334155;
+      border-radius: 8px;
+      font-size: 1rem;
+      font-family: inherit;
+      color: white;
+      background: #0f172a;
+      transition: all 0.2s;
+
+      &:focus {
+        outline: none;
+        border-color: $primary-color;
+        background: #0f172a;
+        box-shadow: 0 0 0 2px rgba($primary-color, 0.2);
+      }
+    }
+
+    textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .btn-box {
+      display: flex;
+      justify-content: flex-end;
+      gap: 12px;
+      margin-top: 10px;
+
+      button {
+        padding: 10px 20px;
+        border-radius: 8px;
+        border: none;
+        cursor: pointer;
+        font-weight: 600;
+        transition:
+          transform 0.1s,
+          opacity 0.2s;
+
+        &:first-child {
+          background: $primary-color;
+          color: white;
+          &:disabled {
+            background: #334155;
+            color: #64748b;
+          }
+        }
+
+        &:last-child {
+          background: transparent;
+          border: 1px solid #475569;
+          color: $text-dim;
+          &:hover {
+            background: #334155;
+            color: white;
+          }
+        }
+
+        &:active {
+          transform: scale(0.98);
+        }
+      }
+    }
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

@@ -1,0 +1,71 @@
+<div class="task-card" [ngClass]="{ expanded: isExpanded() }">
+  <div class="card-header">
+    <div class="title-section" (click)="toggleExpanded()">
+      <svg
+        class="arrow-icon"
+        xmlns="http://www.w3.org/2000/svg"
+        width="20"
+        height="20"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+      >
+        <polyline points="6 9 12 15 18 9"></polyline>
+      </svg>
+      <h3>{{ task().title }}</h3>
+    </div>
+
+    <div class="actions">
+      <button
+        class="btn-edit"
+        (click)="toggleEditMode(); $event.stopPropagation()"
+        aria-label="Edit task"
+      >
+        ✏️
+      </button>
+      <button
+        class="btn-delete"
+        (click)="remove(); $event.stopPropagation()"
+        aria-label="Delete task"
+      >
+        X
+      </button>
+    </div>
+  </div>
+
+  @if (isExpanded()) {
+    <div class="card-body">
+      <p>{{ task().description || 'No task description.' }}</p>
+
+      @if (task().createdAt) {
+        <small class="created-at">Created: {{ task().createdAt | date: 'short' }}</small>
+      }
+    </div>
+  }
+</div>
+
+@if (onEdit) {
+  <div class="modal-backdrop">
+    <div class="edit-box">
+      <h3>EDIT TASK</h3>
+
+      <input [formControl]="editTitleControl" placeholder="Task title..." />
+
+      <textarea [formControl]="editDescriptionControl" placeholder="Task description..." rows="5">
+      </textarea>
+
+      <div class="btn-box">
+        <button
+          (click)="save()"
+          [disabled]="editTitleControl.invalid || editDescriptionControl.invalid"
+        >
+          Save
+        </button>
+        <button (click)="toggleEditMode()">Cancel</button>
+      </div>
+    </div>
+  </div>
+}

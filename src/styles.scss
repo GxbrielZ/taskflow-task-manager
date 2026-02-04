@@ -1,1 +1,13 @@
-/* You can add global styles to this file, and also import other style files */
+$global-bg-app: #0f172a;
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  background-color: $global-bg-app;
+  font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}

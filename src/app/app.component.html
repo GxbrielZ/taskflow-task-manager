@@ -1,1 +1,94 @@
-<p>app works!</p>
+<div class="input-container">
+  <div class="input-box">
+    <input
+      [formControl]="newTaskControl"
+      placeholder="What needs to be done..."
+      aria-label="New task title"
+      (keydown.enter)="addTask()"
+    />
+    <input
+      [formControl]="descriptionControl"
+      placeholder="Task description..."
+      aria-label="New task description"
+      (keydown.enter)="addTask()"
+    />
+  </div>
+  <button (click)="addTask()" [disabled]="newTaskControl.invalid || descriptionControl.invalid">
+    Add Task
+  </button>
+</div>
+<div class="board" cdkDropListGroup>
+  <div
+    class="column"
+    cdkDropList
+    id="todo"
+    [cdkDropListData]="todoTasks()"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h2>To Do ({{ todoTasks().length }})</h2>
+    @for (task of todoTasks(); track task.id) {
+      <app-task-card
+        cdkDrag
+        [cdkDragData]="task"
+        [task]="task"
+        (onDelete)="deleteTask($event)"
+        (onSave)="updateTask($event)"
+      ></app-task-card>
+    } @empty {
+      <div class="empty-state">No tasks here...</div>
+    }
+  </div>
+  <div
+    class="column"
+    cdkDropList
+    id="doing"
+    [cdkDropListData]="doingTasks()"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h2>In Progress ({{ doingTasks().length }})</h2>
+    @for (task of doingTasks(); track task.id) {
+      <app-task-card
+        cdkDrag
+        [cdkDragData]="task"
+        [task]="task"
+        (onDelete)="deleteTask($event)"
+        (onSave)="updateTask($event)"
+      ></app-task-card>
+    } @empty {
+      <div class="empty-state">No tasks here...</div>
+    }
+  </div>
+  <div
+    class="column"
+    cdkDropList
+    id="done"
+    [cdkDropListData]="doneTasks()"
+    (cdkDropListDropped)="drop($event)"
+  >
+    <h2>Done ({{ doneTasks().length }})</h2>
+    @for (task of doneTasks(); track task.id) {
+      <app-task-card
+        cdkDrag
+        [cdkDragData]="task"
+        [task]="task"
+        (onDelete)="deleteTask($event)"
+        (onSave)="updateTask($event)"
+      ></app-task-card>
+    } @empty {
+      <div class="empty-state">No tasks here...</div>
+    }
+  </div>
+</div>
+@if (taskToDelete()) {
+  <div class="modal-backdrop" (click)="cancelDelete()">
+    <div class="modal-box delete-modal" (click)="$event.stopPropagation()">
+      <h3>Delete Task?</h3>
+      <p>Are you sure you want to delete this task? This action cannot be undone.</p>
+
+      <div class="btn-box">
+        <button class="btn-cancel" (click)="cancelDelete()">Cancel</button>
+        <button class="btn-confirm" (click)="confirmDelete()">Delete</button>
+      </div>
+    </div>
+  </div>
+}
