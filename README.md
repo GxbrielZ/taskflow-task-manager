@@ -9,6 +9,8 @@ A reactive, responsive, and fully functional Kanban Task Manager built with the 
 
 👉 **[Live Demo Available Here]()**
 
+## 🖼️ Layout
+
 ![App Screenshot](./public/assets/screenshot.png)
 
 ## ✨ Key Features
@@ -40,7 +42,7 @@ This project was built to demonstrate proficiency in modern Angular development 
 
 1.  **Clone the repository:**
     ```bash
-    git clone
+    git clone https://github.com/GxbrielZ/taskflow-task-manager.git
     ```
 
 2.  **Install dependencies:**
